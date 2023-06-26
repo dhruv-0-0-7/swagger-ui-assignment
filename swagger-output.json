@@ -217,7 +217,32 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Success"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "_id": {
+                        "type": "string",
+                        "example": "26b87f08-c8d3-4528-885e-417db5fe7d213"
+                      },
+                      "title": {
+                        "type": "string",
+                        "example": "New Title"
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
