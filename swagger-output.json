@@ -20,6 +20,9 @@
   "paths": {
     "/api/auth/signup": {
       "post": {
+        "tags": [
+          "Auth"
+        ],
         "description": "Register new User",
         "parameters": [
           {
@@ -66,6 +69,9 @@
     },
     "/api/auth/signin": {
       "post": {
+        "tags": [
+          "Auth"
+        ],
         "description": "Sign-in with User credentials",
         "parameters": [
           {
@@ -108,6 +114,9 @@
     },
     "/api/auth/signout": {
       "post": {
+        "tags": [
+          "Auth"
+        ],
         "description": "Signout User",
         "security": [
           {
@@ -132,6 +141,9 @@
     },
     "/api/user/profile": {
       "get": {
+        "tags": [
+          "User"
+        ],
         "description": "Get User Profile",
         "security": [
           {
@@ -173,6 +185,9 @@
     },
     "/api/user/closeaccount": {
       "delete": {
+        "tags": [
+          "User"
+        ],
         "description": "Close User Account",
         "security": [
           {
@@ -197,7 +212,15 @@
     },
     "/api/post/all": {
       "get": {
+        "tags": [
+          "Post"
+        ],
         "description": "Get all Posts",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "parameters": [
           {
             "name": "Search",
@@ -237,6 +260,18 @@
                       "title": {
                         "type": "string",
                         "example": "New Title"
+                      },
+                      "description": {
+                        "type": "string",
+                        "example": "Something useful"
+                      },
+                      "author": {
+                        "type": "string",
+                        "example": "08d8c578-5e8f-43b2-b782-b8d496d4b763"
+                      },
+                      "__v": {
+                        "type": "number",
+                        "example": 0
                       }
                     }
                   }
@@ -249,7 +284,15 @@
     },
     "/api/post/create": {
       "post": {
-        "description": "",
+        "tags": [
+          "Post"
+        ],
+        "description": "Create Account",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "parameters": [
           {
             "name": "body",
@@ -258,10 +301,12 @@
               "type": "object",
               "properties": {
                 "title": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "New Post"
                 },
                 "description": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "Something useful"
                 }
               }
             }
@@ -269,14 +314,56 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Success"
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string",
+                      "example": "New Post"
+                    },
+                    "description": {
+                      "type": "string",
+                      "example": "Something useful"
+                    },
+                    "author": {
+                      "type": "string",
+                      "example": "08d8c578-5e8f-43b2-b782-b8d496d4b763"
+                    },
+                    "_id": {
+                      "type": "string",
+                      "example": "4995644c-0fa0-4f24-b3c1-e5323f02e127"
+                    },
+                    "__v": {
+                      "type": "number",
+                      "example": "0"
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
     },
     "/api/post/get/{id}": {
       "get": {
-        "description": "",
+        "tags": [
+          "Post"
+        ],
+        "description": "Get all ID",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "parameters": [
           {
             "name": "id",
@@ -287,14 +374,56 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Success"
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "_id": {
+                      "type": "string",
+                      "example": "38ba25f8-f4be-4e89-a8e0-fbe17fb5ee2b"
+                    },
+                    "title": {
+                      "type": "string",
+                      "example": "New Post"
+                    },
+                    "description": {
+                      "type": "string",
+                      "example": "Something useful"
+                    },
+                    "author": {
+                      "type": "string",
+                      "example": "09634661-dd99-4735-b56a-177fbae5ecfd"
+                    },
+                    "__v": {
+                      "type": "number",
+                      "example": 0
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
     },
     "/api/post/update/{id}": {
       "put": {
-        "description": "",
+        "tags": [
+          "Post"
+        ],
+        "description": "Update Post",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "parameters": [
           {
             "name": "id",
@@ -305,14 +434,56 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Success"
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "_id": {
+                      "type": "string",
+                      "example": "38ba25f8-f4be-4e89-a8e0-fbe17fb5ee2b"
+                    },
+                    "title": {
+                      "type": "string",
+                      "example": "Something useful"
+                    },
+                    "description": {
+                      "type": "string",
+                      "example": "Something useful"
+                    },
+                    "author": {
+                      "type": "string",
+                      "example": "09634661-dd99-4735-b56a-177fbae5ecfd"
+                    },
+                    "__v": {
+                      "type": "number",
+                      "example": 0
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
     },
     "/api/post/delete/{id}": {
       "delete": {
-        "description": "",
+        "tags": [
+          "Post"
+        ],
+        "description": "Delete Post",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "parameters": [
           {
             "name": "id",
@@ -323,14 +494,31 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Success"
+                }
+              }
+            }
           }
         }
       }
     },
     "/api/comment/all": {
       "get": {
-        "description": "",
+        "tags": [
+          "Comment"
+        ],
+        "description": "Get all Comments",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "parameters": [
           {
             "name": "post",
@@ -340,14 +528,59 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Success"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "_id": {
+                        "type": "string",
+                        "example": "e0543055-dc42-4678-b77e-c49f4126ea74"
+                      },
+                      "message": {
+                        "type": "string",
+                        "example": "A new Comment"
+                      },
+                      "author": {
+                        "type": "string",
+                        "example": "09634661-dd99-4735-b56a-177fbae5ecfd"
+                      },
+                      "post": {
+                        "type": "string",
+                        "example": "38ba25f8-f4be-4e89-a8e0-fbe17fb5ee2b"
+                      },
+                      "__v": {
+                        "type": "number",
+                        "example": 0
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
     },
     "/api/comment/create": {
       "post": {
-        "description": "",
+        "tags": [
+          "Comment"
+        ],
+        "description": "Create Comment on Post",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "parameters": [
           {
             "name": "body",
@@ -356,10 +589,12 @@
               "type": "object",
               "properties": {
                 "message": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "A new Comment"
                 },
                 "postId": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "cfb52b4a-1886-47c7-bc09-f2d93d5961e6"
                 }
               }
             }
@@ -367,14 +602,56 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Success"
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "A new Comment"
+                    },
+                    "author": {
+                      "type": "string",
+                      "example": "09634661-dd99-4735-b56a-177fbae5ecfd"
+                    },
+                    "post": {
+                      "type": "string",
+                      "example": "f07de02c-7c10-4ee1-ba38-55c96d048da2"
+                    },
+                    "_id": {
+                      "type": "string",
+                      "example": "8e73e5cd-5ebe-4799-8b10-b0ab036c8ce9"
+                    },
+                    "__v": {
+                      "type": "number",
+                      "example": 0
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
     },
     "/api/comment/get/{id}": {
       "get": {
-        "description": "",
+        "tags": [
+          "Comment"
+        ],
+        "description": "Get Comment ID",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "parameters": [
           {
             "name": "id",
@@ -385,14 +662,56 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Success"
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "_id": {
+                      "type": "string",
+                      "example": "8e73e5cd-5ebe-4799-8b10-b0ab036c8ce9"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "A new Comment"
+                    },
+                    "author": {
+                      "type": "string",
+                      "example": "09634661-dd99-4735-b56a-177fbae5ecfd"
+                    },
+                    "post": {
+                      "type": "string",
+                      "example": "f07de02c-7c10-4ee1-ba38-55c96d048da2"
+                    },
+                    "__v": {
+                      "type": "number",
+                      "example": 0
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
     },
     "/api/comment/update/{id}": {
       "put": {
-        "description": "",
+        "tags": [
+          "Comment"
+        ],
+        "description": "Update Comment",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "parameters": [
           {
             "name": "id",
@@ -418,14 +737,56 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Success"
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "_id": {
+                      "type": "object",
+                      "example": "8e73e5cd-5ebe-4799-8b10-b0ab036c8ce9"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Updated Message"
+                    },
+                    "author": {
+                      "type": "string",
+                      "example": "09634661-dd99-4735-b56a-177fbae5ecfd"
+                    },
+                    "post": {
+                      "type": "string",
+                      "example": "f07de02c-7c10-4ee1-ba38-55c96d048da2"
+                    },
+                    "__v": {
+                      "type": "number",
+                      "example": 0
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
     },
     "/api/comment/delete/{id}": {
       "delete": {
-        "description": "",
+        "tags": [
+          "Comment"
+        ],
+        "description": "Delete Comment",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "parameters": [
           {
             "name": "id",
@@ -436,7 +797,16 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Success"
+                }
+              }
+            }
           }
         }
       }

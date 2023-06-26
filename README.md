@@ -9,3 +9,4 @@
 - Run `npm start` OR `npm run start` to start the Server    
 OR
 - Run `npm run start:dev` to start the Server in Development Mode
+- Visit `/api-doc` endpoint for Swagger API Documentation
