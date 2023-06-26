@@ -8,6 +8,7 @@ router.get('/all', async function (req, res, next) {
     try {
         await PostService.getPosts(req, res);
     } catch (err) {
+        console.error(err);
         if (!err instanceof CustomError) err = new CustomError();
         next(err);
     }

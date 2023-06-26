@@ -2,17 +2,25 @@
   "swagger": "2.0",
   "info": {
     "version": "1.0.0",
-    "title": "REST API",
-    "description": ""
+    "title": "MongoDB Assignment Swagger Docs",
+    "description": "This is Simple CRUD operations Express Application documented with Swagger"
   },
   "host": "localhost:3000",
   "schemes": [
     "http"
   ],
+  "securityDefinitions": {
+    "bearerAuth": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "Authorization",
+      "description": "Bearer Token"
+    }
+  },
   "paths": {
     "/api/auth/signup": {
       "post": {
-        "description": "",
+        "description": "Register new User",
         "parameters": [
           {
             "name": "body",
@@ -21,13 +29,16 @@
               "type": "object",
               "properties": {
                 "username": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "anonymous"
                 },
                 "password": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "someSecret"
                 },
                 "email": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "anonymous@something.com"
                 }
               }
             }
@@ -35,14 +46,27 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "example": "Success",
+                  "type": "string"
+                },
+                "token": {
+                  "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI2Yjg3ZjA4LWM4ZDMtNDUyOC04ODVlLTQxN2RiNWZlN2RmOCIsImlhdCI6MTY4NzY5MTYyNX0.y-uWi47DvONUaWWIxq40-ldWzUre0mMPu-lRiFJSYdi",
+                  "type": "string"
+                }
+              }
+            }
           }
         }
       }
     },
     "/api/auth/signin": {
       "post": {
-        "description": "",
+        "description": "Sign-in with User credentials",
         "parameters": [
           {
             "name": "body",
@@ -51,10 +75,12 @@
               "type": "object",
               "properties": {
                 "identifier": {
-                  "example": "any"
+                  "example": "anonymous",
+                  "type": "string"
                 },
                 "password": {
-                  "example": "any"
+                  "example": "someSecret",
+                  "type": "string"
                 }
               }
             }
@@ -62,66 +88,129 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "example": "Success",
+                  "type": "string"
+                },
+                "token": {
+                  "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI2Yjg3ZjA4LWM4ZDMtNDUyOC04ODVlLTQxN2RiNWZlN2RmOCIsImlhdCI6MTY4NzY5MTYyNX0.y-uWi47DvONUaWWIxq40-ldWzUre0mMPu-lRiFJSYdi",
+                  "type": "string"
+                }
+              }
+            }
           }
         }
       }
     },
     "/api/auth/signout": {
       "post": {
-        "description": "",
-        "parameters": [
+        "description": "Signout User",
+        "security": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "type": "string"
+            "bearerAuth": []
           }
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Success"
+                }
+              }
+            }
           }
         }
       }
     },
     "/api/user/profile": {
       "get": {
-        "description": "",
-        "parameters": [],
+        "description": "Get User Profile",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Success"
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "_id": {
+                      "type": "string",
+                      "example": "26b87f08-c8d3-4528-885e-417db5fe7d213"
+                    },
+                    "username": {
+                      "type": "string",
+                      "example": "Anonymous"
+                    },
+                    "email": {
+                      "type": "string",
+                      "example": "anonymous@something.com"
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
     },
     "/api/user/closeaccount": {
       "delete": {
-        "description": "",
-        "parameters": [],
+        "description": "Close User Account",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Success"
+                }
+              }
+            }
           }
         }
       }
     },
     "/api/post/all": {
       "get": {
-        "description": "",
+        "description": "Get all Posts",
         "parameters": [
           {
-            "name": "search",
+            "name": "Search",
             "in": "query",
             "type": "string"
           },
           {
-            "name": "sort",
+            "name": "Sort",
             "in": "query",
             "type": "string"
           },
           {
-            "name": "page",
+            "name": "Page",
             "in": "query",
             "type": "string"
           }

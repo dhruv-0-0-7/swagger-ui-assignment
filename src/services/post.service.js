@@ -9,11 +9,13 @@ async function getPosts(req, res) {
     req.query = value;
 
     const aggregationPipeline = [];
-    if (req.query.search) aggregationPipeline.push({
-        $match: {
-            $text: { $search: req.query.search }
-        }
-    });
+    if (req.query.search) {
+        aggregationPipeline.push({
+            $match: {
+                $text: { $search: req.query.search }
+            }
+        });
+    }
 
     if (req.query.sort) aggregationPipeline.push({ $sort: { title: req.query.sort === 'asc' ? 1 : -1 } });
 
